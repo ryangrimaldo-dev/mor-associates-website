@@ -1,4 +1,5 @@
 <?php
+session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -28,6 +29,28 @@ if (file_exists(__DIR__ . '/.env')) {
     }
 }
 
+// Force HTTPS (except for localhost)
+if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
+    // Skip HTTPS redirect for localhost
+    $is_localhost = false;
+    if (isset($_SERVER['HTTP_HOST'])) {
+        $host = strtolower($_SERVER['HTTP_HOST']);
+        if ($host === 'localhost' || $host === '127.0.0.1' || strpos($host, 'localhost:') === 0) {
+            $is_localhost = true;
+        }
+    }
+    
+    if (!$is_localhost) {
+        // Check if we are behind a proxy that might terminate SSL
+        if (!isset($_SERVER['HTTP_X_FORWARDED_PROTO']) || $_SERVER['HTTP_X_FORWARDED_PROTO'] !== 'https') {
+            if (isset($_SERVER['HTTP_HOST']) && isset($_SERVER['REQUEST_URI'])) {
+                header("Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], true, 301);
+                exit;
+            }
+        }
+    }
+}
+
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
@@ -42,6 +65,41 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['success' => false, 'message' => 'Method not allowed']);
     exit();
+}
+
+// CSRF Protection
+$json_data = json_decode(file_get_contents('php://input'), true);
+
+// For development on localhost, make CSRF optional
+$is_localhost = false;
+if (isset($_SERVER['HTTP_HOST'])) {
+    $host = strtolower($_SERVER['HTTP_HOST']);
+    if ($host === 'localhost' || $host === '127.0.0.1' || strpos($host, 'localhost:') === 0) {
+        $is_localhost = true;
+    }
+}
+
+if (!$is_localhost) {
+    // CSRF validation for production
+    if (!isset($_SERVER['HTTP_X_CSRF_TOKEN'])) {
+        http_response_code(403);
+        echo json_encode(['success' => false, 'message' => 'CSRF token missing']);
+        exit();
+    }
+    
+    // Validate CSRF token
+    if (!isset($_SESSION['csrf_token']) || $_SERVER['HTTP_X_CSRF_TOKEN'] !== $_SESSION['csrf_token']) {
+        http_response_code(403);
+        echo json_encode(['success' => false, 'message' => 'Invalid CSRF token']);
+        exit();
+    }
+} else {
+    // For localhost development, log instead of blocking
+    if (!isset($_SERVER['HTTP_X_CSRF_TOKEN'])) {
+        error_log("Warning: CSRF token missing in request, but allowed on localhost");
+    } elseif (!isset($_SESSION['csrf_token']) || $_SERVER['HTTP_X_CSRF_TOKEN'] !== $_SESSION['csrf_token']) {
+        error_log("Warning: Invalid CSRF token, but allowed on localhost");
+    }
 }
 
 $host = $_ENV['DB_HOST'] ?? getenv('DB_HOST') ?? 'localhost';
@@ -207,9 +265,9 @@ try {
         
         $mail->SMTPOptions = array(
             'ssl' => array(
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true
+                'verify_peer' => true,
+                'verify_peer_name' => true,
+                'allow_self_signed' => false
             )
         );
         
