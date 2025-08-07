@@ -82,6 +82,22 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+        // Load CSRF token
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            fetch('load_csrf.php')
+                .then(response => response.json())
+                .then(data => {
+                    const csrfTokenInput = document.getElementById('csrf_token');
+                    if (csrfTokenInput) {
+                        csrfTokenInput.value = data.csrf_token;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading CSRF token:', error);
+                });
+        }
+        
         const animatedElements = document.querySelectorAll(".service_card, .team_card, .feature, .stat");
         
         animatedElements.forEach((el, index) => {
@@ -150,6 +166,7 @@ if (contactForm) {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': formObject.csrf_token
                     },
                     body: JSON.stringify(formObject)
                 });
@@ -282,7 +299,30 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
+// Load CSRF token when page loads
+async function loadCsrfToken() {
+    try {
+        const response = await fetch('load_csrf.php');
+        const data = await response.json();
+        
+        if (data.csrf_token) {
+            // Set the CSRF token in the hidden input field
+            const csrfInput = document.getElementById('csrf_token');
+            if (csrfInput) {
+                csrfInput.value = data.csrf_token;
+            } else {
+                console.error('CSRF token input field not found');
+            }
+        }
+    } catch (error) {
+        console.error('Error loading CSRF token:', error);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Load CSRF token
+    loadCsrfToken();
+    
     const formInputs = document.querySelectorAll('.form_input');
     
     formInputs.forEach(input => {
