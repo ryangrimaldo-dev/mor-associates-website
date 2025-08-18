@@ -14,88 +14,108 @@
         
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
-        <meta property="og:url" content="https://ryangrimaldo-dev.github.io/mor-associates-website/">
+        <meta property="og:url" content="https://www.moraudit.com/">
         <meta property="og:title" content="MOR & Associates - Professional CPA Services Philippines">
         <meta property="og:description" content="Professional audit and accounting services by Marcaida, Oblena, Resurreccion, and Associates. Expert financial consulting, tax preparation, and business advisory services.">
-        <meta property="og:image" content="https://ryangrimaldo-dev.github.io/mor-associates-website/assets/images/mor-logo.png">
+        <meta property="og:image" content="https://www.moraudit.com/assets/images/mor-logo.png">
         <meta property="og:site_name" content="MOR & Associates">
         <meta property="og:locale" content="en_US">
         
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
-        <meta property="twitter:url" content="https://ryangrimaldo-dev.github.io/mor-associates-website/">
+        <meta property="twitter:url" content="https://www.moraudit.com/">
         <meta property="twitter:title" content="MOR & Associates - Professional CPA Services Philippines">
         <meta property="twitter:description" content="Professional audit and accounting services by Marcaida, Oblena, Resurreccion, and Associates. Expert financial consulting, tax preparation, and business advisory services.">
-        <meta property="twitter:image" content="https://ryangrimaldo-dev.github.io/mor-associates-website/assets/images/mor-logo.png">
+        <meta property="twitter:image" content="https://www.moraudit.com/assets/images/mor-logo.png">
         
         <!-- Favicon -->
-        <link rel="icon" type="image/png" href="assets/images/mor-logo.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/images/mor-logo.png">
+        <link rel="icon" type="image/png" href="/assets/images/mor-logo.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/mor-logo.png">
         
         <!-- Canonical URL -->
-        <link rel="canonical" href="https://ryangrimaldo-dev.github.io/mor-associates-website/">
+        <link rel="canonical" href="https://www.moraudit.com/">
         
         <!-- Stylesheets -->
         <link rel="stylesheet" href="styles.css">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
         <!-- Structured Data -->
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
-          "@type": "AccountingService",
-          "name": "Marcaida, Oblena, Resurreccion, and Associates",
-          "alternateName": "MOR & Associates",
-          "description": "Professional audit and accounting services, tax preparation, and business advisory services",
-          "url": "https://ryangrimaldo-dev.github.io/mor-associates-website",
-          "telephone": "0917-723-5543",
-          "email": "mor.workaudit@gmail.com",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "L44 B9 Mallorca St. Cor. Pontevedra St. Camella Townhomes Classic I San Antonio",
-            "addressLocality": "Paranaque",
-            "addressRegion": "Metro Manila",
-            "addressCountry": "Philippines"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "14.4896",
-            "longitude": "121.0142"
-          },
-          "openingHours": "Mo-Fr 08:00-17:00",
-          "priceRange": "$$",
-          "serviceArea": {
-            "@type": "Place",
-            "name": "Philippines"
-          },
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Accounting Services",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Tax Compliance"
-                }
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": "https://www.moraudit.com/#organization",
+              "name": "Marcaida, Oblena, Resurreccion, and Associates",
+              "url": "https://www.moraudit.com/",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.moraudit.com/assets/images/mor-logo-112x112px.png",
+                "width": "112",
+                "height": "112"
               },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Auditing Services"
-                }
+              "sameAs": [
+                "https://www.facebook.com/profile.php?id=100086303109383"
+              ]
+            },
+            {
+              "@type": "AccountingService",
+              "name": "Marcaida, Oblena, Resurreccion, and Associates",
+              "image": "https://www.moraudit.com/assets/images/mor-logo-112x112px.png",
+              "alternateName": "MOR & Associates",
+              "description": "Professional audit and accounting services, tax preparation, and business advisory services",
+              "url": "https://www.moraudit.com/",
+              "telephone": "0917-723-5543",
+              "email": "mor.workaudit@gmail.com",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "L44 B9 Mallorca St. Cor. Pontevedra St. Camella Townhomes Classic I San Antonio",
+                "addressLocality": "Paranaque",
+                "addressRegion": "Metro Manila",
+                "addressCountry": "Philippines"
               },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Business Registration"
-                }
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "14.4896",
+                "longitude": "121.0142"
+              },
+              "openingHours": "Mo-Fr 08:00-17:00",
+              "priceRange": "$$",
+              "serviceArea": {
+                "@type": "Place",
+                "name": "Philippines"
+              },
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Accounting Services",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Tax Compliance"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Auditing Services"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Business Registration"
+                    }
+                  }
+                ]
               }
-            ]
-          }
+            }
+          ]
         }
         </script>
     </head>
@@ -117,7 +137,7 @@
                 <div class="nav_menu" id="nav-menu">
                     <ul class="nav_list">
                         <li class="nav_item">
-                            <a href="news&updates.html" class="nav_link">News</a>
+                            <a href="news.html" class="nav_link">News</a>
                         </li>
                         <li class="nav_item">
                             <a href="#about" class="nav_link">About</a>
@@ -183,31 +203,32 @@
 
                     <div class="updates_grid">
                         <div class="update_box">
-                            <a href="news&updates.html#News 1" class="update_link">
-                                <img src="assets/images/news1.png" alt="Update 1" class="update_image">
-                                <h3 class="update_title"> BIR Reminder for July 20, 2025 (Sunday)</h3>
-                                <p class="update_description">The BIR requires submission of Q2 remittance reports and Form 1600-WP. See new schedules and details inside.</p>
+                            <a href="news.html#News 1" class="update_link">
+                                <img src="assets/images/aug14.jpg" alt="BIR eFPS Filing Reminders - July 2025 Withholding Taxes" class="update_image">
+                                <h3 class="update_title"> BIR eFPS Filing Reminders - July 2025 Withholding Taxes</h3>
+                                <p class="update_description"> BIR reminds taxpayers to file July 2025 withholding tax forms via eFPS this August. Forms include 1601-C, 0619-E, and 0619-F. See full details inside.</p>
+                                <span class="read_more">Read More →</span>
+                            </a>
+                        </div>
+                        
+                        <div class="update_box">
+                            <a href="news.html#News 2" class="update_link">
+                                <img src="assets/images/aug11.jpg" alt="BIR eFPS Filing Reminders for July 2025" class="update_image">
+                                <h3 class="update_title"> BIR eFPS Filing Reminders for July 2025</h3>
+                                <p class="update_description">BIR reminds taxpayers of August eFPS deadlines for July 2025 withholding tax forms. See filing groups, forms, and details inside.</p>
                                 <span class="read_more">Read More →</span>
                             </a>
                         </div>
 
                         <div class="update_box">
-                            <a href="news&updates.html#News 2" class="update_link">
-                                <img src="assets/images/news2.png" alt="Update 2" class="update_image">
-                                <h3 class="update_title">Empowering Future Accountants Through Meaningful Partnerships</h3>
-                                <p class="update_description">We are honored to support the future accountants of RTU and PUP Taguig. Learn what this means for you.</p>
+                            <a href="news.html#News 3" class="update_link">
+                                <img src="assets/images/aug10.jpg" alt="BIR Deadline Alert: August 10, 2025" class="update_image">
+                                <h3 class="update_title">  BIR Deadline Alert: August 10, 2025</h3>
+                                <p class="update_description">BIR reminds taxpayers of the August 10, 2025 filing deadline for July 2025 tax returns and reports. See applicable taxes, sectors, and full details inside.</p>
                                 <span class="read_more">Read More →</span>
                             </a>
                         </div>
-
-                        <div class="update_box">
-                            <a href="news&updates.html#News 3" class="update_link">
-                                <img src="assets/images/news3.png" alt="Update 3" class="update_image">
-                                <h3 class="update_title"> REMINDER: 1601-C e-Filing Schedule (July 11–14, 2025)</h3>
-                                <p class="update_description">Stay compliant! File your BIR Form 1601-C for June 2025 on your assigned group schedule via eFPS to avoid penalties.</p>
-                                <span class="read_more">Read More →</span>
-                            </a>
-                        </div>
+                        
                     </div>
                 </div>
             </section>
@@ -371,7 +392,7 @@
                                 </div>
                             </div>
                             <div class="team_content">
-                                <h3 class="team_name">Catherine C. Resurreccion, CPA, MBA, REB, RFC</h3>
+                                <h3 class="team_name">Catherine C. Resurreccion, CPA, MBA, CFC</h3>
                                 <span class="team_position">Partner</span>
                             </div>
                         </div>
@@ -535,7 +556,7 @@
                     <div class="footer_section">
                         <h4 class="footer_title">Company</h4>
                         <ul class="footer_links">
-                            <li><a href="news&updates.html">News & Updates</a></li>
+                            <li><a href="news.html">News & Updates</a></li>
                             <li><a href="#about">About Us</a></li>
                             <li><a href="#team">Our Team</a></li>
                             <li><a href="#contact">Contact</a></li>
